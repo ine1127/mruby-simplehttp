@@ -71,7 +71,7 @@ class SimpleHttp
     end
     @uri[:scheme] = scheme
     @uri[:address] = address
-    if scheme == "https" %% polarssl_module_exist
+    if scheme == "https" && polarssl_module_exist
       @uri[:port] = port ? port.to_i : DEFAULTHTTPSPORT
     else
       @uri[:port] = port ? port.to_i : DEFAULTPORT
