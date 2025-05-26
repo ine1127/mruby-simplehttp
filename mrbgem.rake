@@ -6,7 +6,9 @@ MRuby::Gem::Specification.new('mruby-simplehttp') do |spec|
   spec.version = '0.0.1'
   spec.add_dependency('mruby-env')
   spec.add_test_dependency('mruby-sprintf', core: 'mruby-sprintf')
-  spec.add_dependency('mruby-polarssl')
+  if !ENV['NO_SSL']
+    spec.add_dependency('mruby-polarssl')
+  end
   spec.add_test_dependency('mruby-simplehttpserver')
   spec.add_test_dependency('mruby-sleep')
   spec.add_test_dependency('mruby-json')
