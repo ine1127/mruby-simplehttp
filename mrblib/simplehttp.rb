@@ -71,7 +71,7 @@ class SimpleHttp
     end
     @uri[:scheme] = scheme
     @uri[:address] = address
-    if scheme == "https" && polarssl_module_exist
+    if scheme == "https" && polarssl_module_exist?
       @uri[:port] = port ? port.to_i : DEFAULTHTTPSPORT
     else
       @uri[:port] = port ? port.to_i : DEFAULTPORT
@@ -123,7 +123,7 @@ class SimpleHttp
 
     elsif @use_socket
       socket = TCPSocket.new(@uri[:address], @uri[:port])
-      if @uri[:scheme] == "https" && polarssl_module_exist
+      if @uri[:scheme] == "https" && polarssl_module_exist?
         entropy = PolarSSL::Entropy.new
         ctr_drbg = PolarSSL::CtrDrbg.new entropy
         ssl = PolarSSL::SSL.new
